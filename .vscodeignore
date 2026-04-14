@@ -1,0 +1,6 @@
+backend/**
+gemini_env/**
+test.md
+frontend/**
+frontend-react/**
+node_modules/.cache/**

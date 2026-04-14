@@ -1,0 +1,126 @@
+{
+  "name": "innovex-ai-agent",
+  "displayName": "Innovex AI Agent",
+  "description": "AI coding assistant for VS Code backed by a local FastAPI agent server.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "coding",
+    "chat",
+    "python",
+    "fastapi"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onCommand:agent.chat",
+    "onCommand:agent.runTask",
+    "onCommand:agent.fixCurrentFile",
+    "onCommand:agent.generateTests",
+    "onCommand:agent.validateWorkspace"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "agent.chat",
+        "title": "Innovex AI: Chat",
+        "category": "Innovex AI"
+      },
+      {
+        "command": "agent.runTask",
+        "title": "Innovex AI: Complete Task",
+        "category": "Innovex AI"
+      },
+      {
+        "command": "agent.fixCurrentFile",
+        "title": "Innovex AI: Fix Current File",
+        "category": "Innovex AI"
+      },
+      {
+        "command": "agent.generateTests",
+        "title": "Innovex AI: Generate Tests",
+        "category": "Innovex AI"
+      },
+      {
+        "command": "agent.validateWorkspace",
+        "title": "Innovex AI: Validate Workspace",
+        "category": "Innovex AI"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "agent.chat",
+          "when": "workspaceFolderCount >= 0"
+        },
+        {
+          "command": "agent.runTask",
+          "when": "workspaceFolderCount >= 0"
+        },
+        {
+          "command": "agent.fixCurrentFile",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "agent.generateTests",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "agent.validateWorkspace",
+          "when": "workspaceFolderCount >= 0"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "agent.fixCurrentFile",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "agent.generateTests",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "agent.validateWorkspace",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Innovex AI Agent",
+      "properties": {
+        "agent.backendUrl": {
+          "type": "string",
+          "default": "http://127.0.0.1:8000",
+          "description": "Base URL for the local AI agent backend."
+        },
+        "agent.autoApplyChanges": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically write backend-returned file updates into the local workspace."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "prepackage": "npm run compile",
+    "package:vsix": "npx @vscode/vsce package",
+    "install:vsix": "code --install-extension *.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^3.2.2",
+    "typescript": "^5.5.4"
+  }
+}

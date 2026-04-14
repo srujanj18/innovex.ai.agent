@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agent Control Room</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <main class="shell">
+      <section class="left">
+        <header class="panel header">
+          <p class="kicker">AI Coding System</p>
+          <h1>Agent Control Room</h1>
+          <p class="sub">Operate your autonomous coding backend from one place.</p>
+        </header>
+
+        <section class="panel controls">
+          <h2>Request</h2>
+          <div class="grid two">
+            <label>
+              Backend URL
+              <input id="backendUrl" type="text" value="http://127.0.0.1:8000" />
+            </label>
+            <label>
+              Task
+              <select id="task">
+                <option value="chat">chat</option>
+                <option value="fix_file">fix_file</option>
+                <option value="generate_tests">generate_tests</option>
+                <option value="validate_workspace">validate_workspace</option>
+              </select>
+            </label>
+          </div>
+
+          <label>
+            Prompt
+            <textarea id="message" rows="6" placeholder="Describe what the agent should do..."></textarea>
+          </label>
+
+          <div class="grid two">
+            <label>
+              File Path (optional)
+              <input id="filePath" type="text" placeholder="app.py" />
+            </label>
+            <label>
+              Relative Path (optional)
+              <input id="relativeFilePath" type="text" placeholder="src/app.py" />
+            </label>
+          </div>
+
+          <label>
+            Code Context (optional)
+            <textarea id="code" rows="8" placeholder="Paste code to give the agent stronger context..."></textarea>
+          </label>
+
+          <div class="grid three">
+            <label class="checkbox">
+              <input id="autonomousMode" type="checkbox" checked />
+              Autonomous Mode
+            </label>
+            <label class="checkbox">
+              <input id="runValidation" type="checkbox" />
+              Run Validation
+            </label>
+            <label class="checkbox">
+              <input id="generateTests" type="checkbox" />
+              Generate Tests
+            </label>
+          </div>
+
+          <div class="grid two">
+            <label>
+              Intelligence
+              <select id="intelligenceLevel">
+                <option value="high">high</option>
+                <option value="very_high">very_high</option>
+                <option value="medium">medium</option>
+              </select>
+            </label>
+            <label>
+              Language (optional)
+              <input id="language" type="text" placeholder="python" />
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="sendBtn" class="btn primary">Run Agent</button>
+            <button id="clearBtn" class="btn ghost" type="button">Clear Output</button>
+          </div>
+        </section>
+      </section>
+
+      <section class="right">
+        <section class="panel status">
+          <h2>Runtime</h2>
+          <p id="statusText">Idle</p>
+        </section>
+
+        <section class="panel output">
+          <h2>Agent Response</h2>
+          <pre id="response">No response yet.</pre>
+        </section>
+
+        <section class="panel files">
+          <h2>Updated Files</h2>
+          <div id="updatedFiles" class="files-list">
+            <p class="hint">No changed files yet.</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

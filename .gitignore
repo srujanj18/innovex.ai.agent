@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+frontend-react/node_modules/
+gemini_env/
+
+# Python caches and local env
+__pycache__/
+*.py[cod]
+.env
+backend/.env
+
+# Logs
+*.log
+extension-output-*
+
+# Frontend/build caches
+frontend-react/dist/
+frontend-react/.vite/
+
+# Local scratch files
+*.bak
+backend/workspace/output.txt
+backend/workspace/choice
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
